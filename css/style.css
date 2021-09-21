@@ -1,0 +1,65 @@
+ @import url(https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap);
+ @import url(https://fonts.googleapis.com/css2?family=Orbitron:wght@100;200;300;400;500;600;800;900&display=swap);
+
+
+body{
+    background: #000;
+}
+
+ .fecha{
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+}
+
+
+.hora {
+  font-family: 'Londrina Outline', display;
+  color: white;
+  letter-spacing: 4px;
+  font-size: 2em;
+}
+
+
+/* efecto neon */
+
+.relojVerde{
+    text-shadow: 0 0 5px #7bffce,
+    0 0 10px #7bffce,
+    0 0 20px #7bffce,
+    0 0 40px #7bffce,
+    0 0 80px #7bffce,
+    0 0 90px #7bffce,
+    0 0 100px #7bffce;
+}
+.relojCeleste{
+    text-shadow: 0 0 5px #7be0ff,
+    0 0 10px #7be0ff,
+    0 0 20px #7be0ff,
+    0 0 40px #7be0ff,
+    0 0 80px #7be0ff,
+    0 0 90px #7be0ff,
+    0 0 100px #7be0ff;
+}
+.relojRosa{
+    text-shadow: 0 0 5px #ff7bd3,
+    0 0 10px #ff7bd3,
+    0 0 20px #ff7bd3,
+    0 0 40px #ff7bd3,
+    0 0 80px #ff7bd3,
+    0 0 90px #ff7bd3,
+    0 0 100px #ff7bd3;
+}
+
+.btn-verde{
+    background: #7bffce;
+}
+
+.btn-celeste{
+    background: #7be0ff;
+}
+
+.btn-rosa{
+    background: #ff7bd3;
+}
+
+
