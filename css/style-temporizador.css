@@ -33,12 +33,7 @@ body {
   z-index: 1;
 }
 .esfera:nth-child(1) .progressCircle:nth-child(2) {
-  /* stroke-dashoffset:600;
-  stroke-dasharray:600;
-  stroke-dashoffset:calc(600 - (600 * 9) / 100); */
   transition: stroke-dashoffset 0.35s;
-  transform: rotate(-360deg);
-  transform-origin: 50% 50%;
 }
 
 .esfera {
@@ -48,13 +43,13 @@ body {
 .esfera div {
   position: relative;
 }
-.esfera .cronometro {
+.esfera .temporizador {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 52%;
+  top: 52%;
   transform: translate(-50%, -50%);
   color: rgb(66, 139, 202);
-  font-size: 1.6em;
+  font-size: 1.4rem;
   letter-spacing: 0.1em;
   opacity: 1;
   animation: parpadeo 1s linear 0.2s infinite normal none;
@@ -77,38 +72,67 @@ body {
   }
 } 
 
-/* input {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  width: 80px;
+input {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 43px;
+  color: white;
+  font-size: 0.85em;
+  background: transparent;
+  border: none;
+  border-bottom: solid rgb(66, 139, 202);
+  margin-left: 35%;
+
 }
- */
-#centeseg {
-  font-size: 0.4em;
-}
+ 
 
 .botones {
   color: #ffffff;
-  font-size: 1.2em;
+  font-size: 1em;
   letter-spacing: 0.1em;
   text-decoration: none;
-  margin: 0px;
+  margin-left: 20px;
   padding-left: 0px;
   padding-right: 0px;
 }
 .botones:hover {
   color: rgb(66, 139, 202);
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 #playPause {
   width: 40%;
   height: 40%;
-  font-size: 1.2em;
+  font-size: .8em;
   background: rgb(66, 139, 202);
   border-color: none;
   border-radius: 100%;
-  margin: 30px;
+  margin: 20px 20px;
+  padding: 11px;
+  cursor: pointer;
+}
+#cancelAlarm {
+  width: 50%;
+  height:40%;
+  font-size: 1em;
+  font-weight: bold;
+  background: rgb(66, 139, 202);
+  color: black;
+  border-color: none;
+  margin: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+#cancelAlarm:hover {
+  width: 50%;
+  height:50%;
+  font-size: 1em;
+  font-weight: bold;
+  background: white;
+  color: rgb(66, 139, 202);
+  border-color: none;
+  margin-top: 5px;
+  box-shadow: 8px 10px 14px -8px rgba(0,0,0,0.75);
   cursor: pointer;
 }

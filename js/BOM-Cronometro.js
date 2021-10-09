@@ -40,8 +40,9 @@ let btnPlayPause = document.getElementById("playPause");
 let btnReset = document.getElementById("reiniciar");
 let btnVuelta = document.getElementById("vuelta");
 let switchBotones = document.getElementById("botones");
-let cronometro_score = document.getElementById('cronometro-score');
-let cantPoints = 0
+let vueltas = document.getElementById("vueltas");
+let cantVueltas = 0;
+/* let parpadeo = 0; */
 
 btnPlayPause.addEventListener("click", startPause);
 /* btnVuelta.addEventListener("click", vuelta); */
@@ -60,25 +61,25 @@ function time() {
     segundos = 0;
   }
 
-   if (centesimas < 10) {
+  if (centesimas < 10) {
     // agregar un 0 delante del número
 
     centeTotal = "0" + centesimas;
-  }else{
+  } else {
     centeTotal = centesimas;
   }
   if (segundos < 10) {
     // agregar un 0 delante del número
 
     segTotal = "0" + segundos;
-  }else{
+  } else {
     segTotal = segundos;
   }
   if (minutos < 10) {
     // agregar un 0 delante del número
 
     minTotal = "0" + minutos;
-  } else{
+  } else {
     minTotal = minutos;
   }
   /* centeTotal = ("0" + centesimas).slice(-2);
@@ -90,41 +91,41 @@ function time() {
   seg.innerHTML =`${segTotal}`;
   centeseg.innerHTML =`${centeTotal}`; */
 
-  if (segTotal <= 59 && minTotal == 0) { 
-   min.innerHTML =``;
-   separador.innerHTML ='';
-   seg.innerHTML =`${segTotal}`;
-   centeseg.innerHTML =`${centeTotal}`; 
-
-  } else { if (minTotal >= 1) {
-    min.innerHTML =`${minTotal}`;
-    separador.innerHTML =':';
-    seg.innerHTML =`${segTotal}`;
-    centeseg.innerHTML =`${centeTotal}`;
-   }
- }
- let porcentaje = segTotal * 1.66666667;
- setProgreso(porcentaje);
-    /* if (centeTotal < 100 && centeTotal > 0) {
-      setProgreso(centeTotal);
-    }; */
+  if (segTotal <= 59 && minTotal == 0) {
+    min.innerHTML = ``;
+    separador.innerHTML = "";
+    seg.innerHTML = `${segTotal}`;
+    centeseg.innerHTML = `${centeTotal}`;
+  } else {
+    if (minTotal >= 1) {
+      min.innerHTML = `${minTotal}`;
+      separador.innerHTML = ":";
+      seg.innerHTML = `${segTotal}`;
+      centeseg.innerHTML = `${centeTotal}`;
+    }
+  }
+  let porcentaje = segTotal * 1.66666667;
+  setProgreso(porcentaje);
 }
 
 function startPause() {
   time();
   timeStarted = setInterval(time, 10);
-  btnPlayPause.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+  btnPlayPause.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
   <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
 </svg>`;
-let cronometroParpadeo = document.getElementById('cronometro');
-cronometroParpadeo.style.animationPlayState = 'paused';
+ let cronometroParpadeo = document.getElementById("cronometro");
+  cronometroParpadeo.style.animationPlayState = "paused";
+  /* stopColor() */
   btnPlayPause.removeEventListener("click", startPause);
+  /* btnPlayPause.addEventListener("click", stopColor); */
 }
 
-function pause(){
+function pause() {
   clearInterval(timeStarted);
   timeStarted = 0;
-  btnPlayPause.innerHTML =` <svg
+ /*  parpadeo = setInterval(setOpacityColor, 2000); */
+  btnPlayPause.innerHTML = ` <svg
   xmlns="http://www.w3.org/2000/svg"
   width="16"
   height="16"
@@ -137,13 +138,26 @@ function pause(){
   />
 </svg>`;
 let cronometroParpadeo = document.getElementById('cronometro');
-cronometroParpadeo.style.animationPlayState = 'running';
-btnPlayPause.addEventListener("click", startPause);
+cronometroParpadeo.style.animationPlayState = 'running'; 
+/* setOpacityColor() */
+
+  btnPlayPause.addEventListener("click", startPause);
 }
 
-/* function vuelta() {
-  clearInterval(timeStarted);
-  btnPlayPause.addEventListener("click", start);
+ 
+
+/* function setOpacityColor() {
+  let cronometroParpadeo = document.getElementById("cronometro");
+  cronometroParpadeo.style.opacity =
+    cronometroParpadeo.style.opacity == "1" ? "0" : "1";
+  cronometroParpadeo.style.color =
+    cronometroParpadeo.style.color == "rgb(66, 139, 202)"
+      ? "white"
+      : "rgb(66, 139, 202);";
+}
+
+function stopColor() {
+  clearInterval(parpadeo);
 } */
 
 function reset() {
@@ -152,13 +166,13 @@ function reset() {
   separador.innerHTML = ":";
   seg.innerHTML = `00`;
   centeseg.innerHTML = `00`;
-  cantPoints = 0;
+  cantVueltas = 0;
   porcentaje = 0;
   setProgreso(porcentaje);
   minutos = 0;
   segundos = 0;
   centesimas = 0;
-  btnPlayPause.innerHTML =` <svg
+  btnPlayPause.innerHTML = ` <svg
   xmlns="http://www.w3.org/2000/svg"
   width="16"
   height="16"
@@ -170,39 +184,39 @@ function reset() {
     d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
   />
 </svg>`;
-  cronometro_score.innerHTML = '';
+  vueltas.innerHTML = "";
   btnPlayPause.addEventListener("click", startPause);
-};
+}
 
-const addPoint = (time = '00:0000') => {
-  cantPoints++
-  if (cantPoints <= 10) {
-    cronometro_score.innerHTML += `<p>${time}</p>`
+const vuelta = (time = "00:0000") => {
+  cantVueltas++;
+  if (cantVueltas <= 10) {
+    vueltas.innerHTML += `<p>${time}</p>`;
     let porcent = 0;
     setProgreso(porcent);
   } else {
-    pause()
+    pause();
   }
-}
+};
 
-switchBotones.addEventListener('click', (e) => {
+switchBotones.addEventListener("click", (e) => {
   switch (e.target.id) {
-    case 'playPause':
+    case "playPause":
       if (timeStarted === 0) {
-        startPause()
+        startPause();
       } else {
-        pause()
+        pause();
       }
       break;
-    case 'reiniciar':
-      reset()
+    case "reiniciar":
+      reset();
       break;
-     case 'vuelta':
-      addPoint(`${cantPoints+1}° vuelta_  ${minutos === 0 ? '' : minutos + ' : '} ${segundos} . ${centesimas}`)
-      break; 
+    case "vuelta":
+      vuelta(
+        `${cantVueltas + 1}° vuelta_  ${
+          minutos === 0 ? "" : minutos + " : "
+        } ${segundos} . ${centesimas}`
+      );
+      break;
   }
 });
-
-
-
-
